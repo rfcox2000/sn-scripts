@@ -1,0 +1,23 @@
+var pluginList = 'sn_ace,sn_ais_admin_tools,sn_aisearch_global,sn_aemc,sn_app_eng_notify,sn_app_eng_studio,sn_atf_tg,sn_bm_client,sn_calendar,sn_change_atf,sn_instance_clone,sn_cmdb_ws,sn_cwm,sn_cmn_uib_comp,sn_par_vis_base,sn_decision_design,sn_decision_table,sn_deploy_pipeline,sn_diagram_builder,sn_invst_pln,sn_gantt,sn_gf,sn_ads_setup,sn_ppm_imd,sn_incident_atf,sn_visual_board,sn_knbn_comp,sn_kpi_composer,sn_node_map,sn_uib_on_call,sn_app_analytics_w,sn_playbook_exp,now_playbook_exp,sn_align_ws,sn_align_core,sn_align_cmn_int,sn_align_snow_int,sn_problem_atf,sn_pa_designer,sn_pw,sn_quick_filter,sn_roadmap,sn_scrum_common,sn_docs,sn_theme_builder';
+var currentDateTimeStr = gs.nowDateTime();
+var availPlugins = new GlideRecord('sys_store_app');
+availPlugins.addEncodedQuery('update_available=true^hide_on_ui=false^scopeIN' + pluginList);
+availPlugins.query();
+var count = availPlugins.getRowCount();
+gs.log('Starting plugin update cycle - ' + currentDateTimeStr,'Plugin Update Process');
+gs.sleep(1000);
+gs.log('There are ' + count + ' plugins to update','Plugin Update Process');
+var report = 'Plugin update report: \n';
+
+var worker = new sn_appclient.AppUpgrader();
+//Third, loop through all plugins to update them while skipping plugins listed on the skip list
+while(availPlugins.next()){
+        //report = report.concat('Updated ' + availPlugins.source) + ' from ' + availPlugins.version + ' to ' + availPlugins.latest_version + '\n';
+		gs.log('Starting update on - ' + availPlugins.source + ' from ' + availPlugins.version + ' to ' + availPlugins.latest_version + '\n', 'Plugin Update Process');
+        worker.upgrade(availPlugins.sys_id.toString(), availPlugins.latest_version, false);
+		gs.log('Updated - ' + availPlugins.source + ' from ' + availPlugins.version + ' to ' + availPlugins.latest_version + '\n', 'Plugin Update Process');
+}
+//Fourth, send report to sys_log
+//gs.log(report,'Plugin Update Process');
+gs.sleep(1000);
+gs.log('Completed plugin update cycle - ' + currentDateTimeStr,'Plugin Update Process');
