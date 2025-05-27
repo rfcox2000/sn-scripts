@@ -1,7 +1,17 @@
+// TODO: Add ability to just update all available updates by reading what updats are waiting
+var updateAll = false; //Only set to true on a PDI or when testing to update all plugins. This will take A LONG TIME
+
+// Currently this is just a comma seperated list of scope names of plugins you wish to update.
 var pluginList = 'sn_ace,sn_ais_admin_tools,sn_aisearch_global,sn_aemc,sn_app_eng_notify,sn_app_eng_studio,sn_atf_tg,sn_bm_client,sn_calendar,sn_change_atf,sn_instance_clone,sn_cmdb_ws,sn_cwm,sn_cmn_uib_comp,sn_par_vis_base,sn_decision_design,sn_decision_table,sn_deploy_pipeline,sn_diagram_builder,sn_invst_pln,sn_gantt,sn_gf,sn_ads_setup,sn_ppm_imd,sn_incident_atf,sn_visual_board,sn_knbn_comp,sn_kpi_composer,sn_node_map,sn_uib_on_call,sn_app_analytics_w,sn_playbook_exp,now_playbook_exp,sn_align_ws,sn_align_core,sn_align_cmn_int,sn_align_snow_int,sn_problem_atf,sn_pa_designer,sn_pw,sn_quick_filter,sn_roadmap,sn_scrum_common,sn_docs,sn_theme_builder';
 var currentDateTimeStr = gs.nowDateTime();
 var availPlugins = new GlideRecord('sys_store_app');
-availPlugins.addEncodedQuery('update_available=true^hide_on_ui=false^scopeIN' + pluginList);
+var encoudedQuery;
+if (updateAll){
+    encoudedQuery = 'update_available=true^hide_on_ui=false';
+} else {
+    encoudedQuery = 'update_available=true^hide_on_ui=false^scopeIN' + pluginList;
+}
+availPlugins.addEncodedQuery(encoudedQuery);
 availPlugins.query();
 var count = availPlugins.getRowCount();
 gs.log('Starting plugin update cycle - ' + currentDateTimeStr,'Plugin Update Process');
