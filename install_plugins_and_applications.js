@@ -105,6 +105,9 @@ installPluginsAndApplications([
     'com.snc.incident.awa', //Advanced Work Assignment for Incidents
     'com.snc.incident.universal_request', //Universal Request for Incident Integration
     'sn_devops_chgvlcty', //DevOps Change Velocity
+    'com.glide.awa', //Advanced work assignment
+    'sn_ai_search_admin', //AI Search Admin
+    'com.glide.interaction.awa', //Agent Chat
     
     'com.glide.cs.chatbot', //Virtual Agent
     'com.glideapp.cs.sm_topic_blocks', //Service Management Virtual Agent Topic Blocks
@@ -147,4 +150,9 @@ installPluginsAndApplications([
     'sn_vsc', //Security Center    
 
     'com.sn_hr_core', //Human Resources Scoped App: Core
+    'sn_ex_sp_pro', //Employee Center Pro
+    'sn_ext_conn_suite', //External Content Connectors Application Suite
+
+    'sn_disco_workspace', //Discovery Admin Workspace
+    'sn_sns_aes', //ServiceNow Studio for App Engine
 ]);
