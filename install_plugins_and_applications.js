@@ -104,7 +104,8 @@ installPluginsAndApplications([
     'com.snc.pa.change', //Performance Analytics Content Pack for Change Management
     'com.snc.incident.awa', //Advanced Work Assignment for Incidents
     'com.snc.incident.universal_request', //Universal Request for Incident Integration
-
+    'sn_devops_chgvlcty', //DevOps Change Velocity
+    
     'com.glide.cs.chatbot', //Virtual Agent
     'com.glideapp.cs.sm_topic_blocks', //Service Management Virtual Agent Topic Blocks
         
@@ -114,7 +115,7 @@ installPluginsAndApplications([
     'com.snc.financial_planning_pmo', //PPM
     'com.snc.project_management_v3', //Project Management 
     'com.snc.sdlc.agile.2.0', //Agile Development
-    'com.snc.sdlc.safe', //Essential SAFe
+   // 'com.snc.sdlc.safe', //Essential SAFe
     'com.snc.sdlc.agile.multi_task', //Unified Backlog
     'com.snc.test_management.2.0', //Test Management
     'com.snc.release_management_v2', //Release Management
@@ -144,4 +145,6 @@ installPluginsAndApplications([
     'com.snc.document_management', //Managed Documents
     'com.glide.quiz_designer', //Quiz Designer
     'sn_vsc', //Security Center    
+
+    'com.sn_hr_core', //Human Resources Scoped App: Core
 ]);
